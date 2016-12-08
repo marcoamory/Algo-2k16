@@ -86,6 +86,27 @@ public class Vol {
 		
 		return lieuxExtremes;
 	}
+	
+	public Coordonnees lieuPlusProcheCible(Coordonnees cible) {
+		
+		double distanceMin = Integer.MAX_VALUE;
+		Coordonnees lieuPlusProcheCible = cible;
+		
+		for (int i = 0; i < tableCoordonnees.length; i++) {
+			
+			double distanceCible = cible.distance(tableCoordonnees[i]);
+			
+			if (distanceCible < distanceMin) {
+				
+				lieuPlusProcheCible = tableCoordonnees[i];
+				
+			}
+			
+		}
+		
+		return lieuPlusProcheCible;
+		
+	}
 
 	
 } // fin classe
