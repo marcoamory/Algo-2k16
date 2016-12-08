@@ -44,6 +44,11 @@ public class Utilitaires {
 		}
 		return entier;
 	}  
+	
+	public static int lireUnEntier(){
+		int entier = scanner.nextInt();
+		return entier;
+	}
 
 	public static int unEntierAuHasardEntre (int valeurMinimale, int valeurMaximale){
 		double nombreReel;

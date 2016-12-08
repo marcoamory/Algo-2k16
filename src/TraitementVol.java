@@ -27,6 +27,9 @@ public class TraitementVol {
 			case 3 :
 				statistique3();
 				break;
+			case 4 :
+				statistique4();
+				break;
 			} 
 		}while(choix!=0);
 		System.out.println("Au revoir!\n");
@@ -52,8 +55,13 @@ public class TraitementVol {
 	}
 
 	public static Coordonnees lireCoordonnees(){
+		System.out.print("Latitude: ");
+		long latitude = Utilitaires.lireUnEntier();
+		System.out.print("\nLongitude: ");
+		long longitude = Utilitaires.lireUnEntier();
 		
-		return null;
+		Coordonnees coordonees = new Coordonnees(latitude, longitude);
+		return coordonees;
 	}
 	
 	public static void afficherParcours(Coordonnees[] parcours){
@@ -76,6 +84,12 @@ public class TraitementVol {
 	public static void statistique3(){
 		System.out.println("\nLes coordonnées des 4 points extrème sont : ");
 		Utilitaires.afficherTableCoordonnees(vol.lieuxExtremes());
+	}
+	
+	public static void statistique4(){
+		System.out.println("Coordonnées de la cible");
+		Coordonnees cible = lireCoordonnees();
+		System.out.println("Le lieu le plus proche de la cible est : " + vol.lieuPlusProcheCible(cible));
 	}
 
 	// A COMPLETER
