@@ -52,6 +52,7 @@ public class Vol {
 		return coordonneesMax;
 	}
 	
+
 	public Coordonnees[] lieuxExtremes(){
 		long latitudeMax = Integer.MIN_VALUE;
 		long latitudeMin = Integer.MAX_VALUE;
