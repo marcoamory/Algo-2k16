@@ -57,10 +57,7 @@ public class TraitementVol {
 	}
 	
 	public static void afficherParcours(Coordonnees[] parcours){
-		for (int i = 0; i<parcours.length; i++){
-			System.out.println(parcours[i]);
-		}
-		System.out.println();
+		Utilitaires.afficherTableCoordonnees(vol.getTableCoordonnees());
 	}
 	
 	public static Coordonnees[] creerParcours(){

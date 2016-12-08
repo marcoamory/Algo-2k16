@@ -46,3 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /bin/
+
+bin/Vol.class
+*.class
+bin/TraitementVol.class
