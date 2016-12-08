@@ -52,8 +52,38 @@ public class Vol {
 		return coordonneesMax;
 	}
 	
-	public Coordonnees lieuExtreme(){
-		return null; //PoloStyle
+	public Coordonnees[] lieuxExtremes(){
+		long latitudeMax = Integer.MIN_VALUE;
+		long latitudeMin = Integer.MAX_VALUE;
+		long longitudeMax = Integer.MIN_VALUE;
+		long longitudeMin = Integer.MAX_VALUE;
+		
+		Coordonnees est = null;
+		Coordonnees ouest = null;
+		Coordonnees nord = null;
+		Coordonnees sud = null;
+		
+		for (int i = 0; i < tableCoordonnees.length; i++) {
+			if(tableCoordonnees[i].getLatitude() > latitudeMax){
+				latitudeMax = tableCoordonnees[i].getLatitude();
+				est = tableCoordonnees[i];
+			}
+			if(tableCoordonnees[i].getLatitude() < latitudeMin){
+				latitudeMin = tableCoordonnees[i].getLatitude();
+				ouest = tableCoordonnees[i];
+			}
+			if(tableCoordonnees[i].getLongitude() > longitudeMax){
+				longitudeMax = tableCoordonnees[i].getLongitude();
+				nord = tableCoordonnees[i];
+			}
+			if(tableCoordonnees[i].getLongitude() < longitudeMin){
+				longitudeMin = tableCoordonnees[i].getLongitude();
+				sud = tableCoordonnees[i];
+			}
+		}
+		Coordonnees[] lieuxExtremes = new Coordonnees[] {est, ouest, nord, sud}; 
+		
+		return lieuxExtremes;
 	}
 
 	

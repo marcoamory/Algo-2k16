@@ -23,6 +23,10 @@ public class TraitementVol {
 				break;
 			case 2:
 				statistique2();
+				break;
+			case 3 :
+				statistique3();
+				break;
 			} 
 		}while(choix!=0);
 		System.out.println("Au revoir!\n");
@@ -70,6 +74,11 @@ public class TraitementVol {
 	
 	public static void statistique2(){
 		System.out.println("\nLe lieu le plus éloigné est : [" +vol.lieuLePlusEloigne() + "]");
+	}
+	
+	public static void statistique3(){
+		System.out.println("\nLes coordonnées des 4 points extrème sont : ");
+		Utilitaires.afficherTableCoordonnees(vol.lieuxExtremes());
 	}
 
 	// A COMPLETER

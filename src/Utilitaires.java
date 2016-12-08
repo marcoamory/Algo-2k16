@@ -52,6 +52,14 @@ public class Utilitaires {
 		nombreReel = Math.random();
 		resultat = (int) (nombreReel * (valeurMaximale - valeurMinimale + 1)) + valeurMinimale;
 		return resultat;
-	}  
+	}
+	
+	public static void afficherTableCoordonnees(Coordonnees[] coordonnees){
+		for (int i = 0; i < coordonnees.length; i++) {
+			System.out.println(coordonnees[i]);
+			System.out.println();
+			
+		}
+	}
 
 }
