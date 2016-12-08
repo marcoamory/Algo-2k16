@@ -108,6 +108,20 @@ public class Vol {
 		return lieuPlusProcheCible;
 		
 	}
+	
+	public double distanceTotale() {
+		
+		double distanceTotale = 0;
+		
+		for (int i = 0; i < tableCoordonnees.length-1; i++) {
+			
+			distanceTotale += tableCoordonnees[i].distance(tableCoordonnees[i+1]);
+			
+		}
+		
+		return distanceTotale;
+		
+	}
 
 	
 } // fin classe

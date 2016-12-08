@@ -30,6 +30,24 @@ public class TraitementVol {
 			case 4 :
 				statistique4();
 				break;
+			case 5 :
+				statistique5();
+				break;
+			case 6 :
+				statistique6();
+				break;
+			case 7 :
+				statistique7();
+				break;
+			case 8 :
+				statistique8();
+				break;
+			case 9 :
+				statistique9();
+				break;
+			case 10 :
+				statistique10();
+				break;
 			} 
 		}while(choix!=0);
 		System.out.println("Au revoir!\n");
@@ -90,6 +108,30 @@ public class TraitementVol {
 		System.out.println("Coordonnées de la cible");
 		Coordonnees cible = lireCoordonnees();
 		System.out.println("Le lieu le plus proche de la cible est : " + vol.lieuPlusProcheCible(cible));
+	}
+	
+	public static void statistique5(){
+		System.out.println("Distance totale parcourue: " + vol.distanceTotale());
+	}
+	
+	public static void statistique6(){
+		
+	}
+	
+	public static void statistique7(){
+		
+	}
+	
+	public static void statistique8(){
+		
+	}
+	
+	public static void statistique9(){
+		
+	}
+	
+	public static void statistique10(){
+		
 	}
 
 	// A COMPLETER
