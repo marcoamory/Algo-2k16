@@ -3,7 +3,7 @@
  * 
  * Classe permettant de memoriser et traiter les coordonnees d'un parcours
  * 
- * @author ... <----- !!!!!!! renseignez vos noms ici !!!!!
+ * @author AMORY Marco, VERDONCK Florian
  * 
  **/
 public class Vol {
