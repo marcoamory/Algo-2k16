@@ -2,7 +2,7 @@
  * Dossier algo 
  * Programme principal a completer
  * 
- *    @author ... 				<-----  !!!!!!! renseignez vos noms ici  !!!!!
+ *    @author AMORY Marco, VERDONCK Florian
  **/
 public class TraitementVol {
 	private static final String REPERTOIRE = "data/";
