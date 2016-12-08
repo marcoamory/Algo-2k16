@@ -53,7 +53,7 @@ public class Vol {
 	}
 	
 	public Coordonnees lieuExtreme(){
-		return null;
+		return null; //PoloStyle
 	}
 
 	
