@@ -111,11 +111,11 @@ public class TraitementVol {
 	}
 	
 	public static void statistique5(){
-		System.out.println("Distance totale parcourue: " + vol.distanceTotale());
+		System.out.println("Distance totale parcourue: " + vol.distanceTotale() + " km");
 	}
 	
 	public static void statistique6(){
-		
+		System.out.println("Distance max avec point de contournement: " + vol.distancePointsContournements(0, 0, 1));
 	}
 	
 	public static void statistique7(){
