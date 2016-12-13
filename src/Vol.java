@@ -126,18 +126,18 @@ public class Vol {
 	public double distancePointsContournements(int debut, double distanceTotale, int nbrPoints){
 		
 		double distanceMax = 0;
-		
-		if(nbrPoints > 0){
+		double distanceTemp = 0;
 		
 			for (int i = debut; i < tableCoordonnees.length; i++) {
 				if(tableCoordonnees[debut].distance(tableCoordonnees[i]) + tableCoordonnees[i].distance(tableCoordonnees[tableCoordonnees.length-1]) > distanceMax){
 					distanceMax = tableCoordonnees[debut].distance(tableCoordonnees[i]) + tableCoordonnees[i].distance(tableCoordonnees[tableCoordonnees.length-1]);
-					distanceTotale += distanceMax;
-					return distancePointsContournements(i+1, distanceTotale, nbrPoints--);
-					
+					if(nbrPoints > 1){
+						distancePointsContournements(i+1, distanceMax, nbrPoints);
+					}
 				}
 			}
-		}
+			distanceTotale+= distanceMax;
+			nbrPoints--;
 		return distanceTotale;
 	}
 
