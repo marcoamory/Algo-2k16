@@ -123,7 +123,7 @@ public class TraitementVol {
 	public static void statistique6(){
 		System.out.print("Combien de point(s) de contournement(s)? (Max : " + (vol.getTableCoordonnees().length-2) + ")");
 		int nombrePointsContournements = Utilitaires.lireUnEntierPositifOuNul();
-		System.out.println("Distance max avec " + nombrePointsContournements + " point(s) de contournement(s): " + vol.distancePointsContournements(0,0,nombrePointsContournements));
+		System.out.println("Distance max avec " + nombrePointsContournements + " point(s) de contournement(s): " + vol.distancePointsContournements(nombrePointsContournements));
 	}
 	
 	public static void statistique7(){
@@ -131,11 +131,27 @@ public class TraitementVol {
 	}
 	
 	public static void statistique8(){
-		
+		System.out.println("Cible à atteindre");
+		Coordonnees cible = lireCoordonnees();
+		if(vol.cibleAtteintes(cible)){
+			System.out.println("Cible atteinte!");
+		}
+		else{
+			System.out.println("Cible non atteinte!");
+		}
 	}
 	
 	public static void statistique9(){
+		System.out.println("Combien de cibles voulez-vous fixer comme objectif?");
+		int nombreCible = Utilitaires.lireUnEntierStrictementPositif();
+		Coordonnees[] cibles = new Coordonnees[nombreCible];
+		for (int i = 0; i < cibles.length; i++) {
+			System.out.println("Coordonnées de la cible n°" + (i+1));
+			Coordonnees cible = lireCoordonnees();
+			cibles[i] = cible;
+		}
 		
+		System.out.println("Nombre de cibles atteintes : " + vol.nombreCibleAtteintes(cibles));
 	}
 	
 	public static void statistique10(){
