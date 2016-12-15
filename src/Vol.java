@@ -24,6 +24,13 @@ public class Vol {
 		return tableCoordonnees;
 	}
 	
+	public Date getDate(){
+		return date;
+	}
+	
+	public String getPilote(){
+		return pilote;
+	}
 
 
 
@@ -123,23 +130,43 @@ public class Vol {
 		
 	}
 	
-	public double distancePointsContournements(int debut, double distanceTotale, int nbrPoints){
+	public double distancePointsContournements(int debut, double distanceSegment, int nbrPoints){
 		
 		double distanceMax = 0;
-		double distanceTemp = 0;
+		double distanceTemp;
+		double distanceTotale = 0;
 		
-			for (int i = debut; i < tableCoordonnees.length; i++) {
+			for (int i = debut+1; i < tableCoordonnees.length; i++) {
 				if(tableCoordonnees[debut].distance(tableCoordonnees[i]) + tableCoordonnees[i].distance(tableCoordonnees[tableCoordonnees.length-1]) > distanceMax){
 					distanceMax = tableCoordonnees[debut].distance(tableCoordonnees[i]) + tableCoordonnees[i].distance(tableCoordonnees[tableCoordonnees.length-1]);
+					distanceTemp = distanceMax + distanceSegment;
+					System.out.println("Distance Segment = " + distanceSegment);
+					System.out.println("Distance Temp = " + distanceTemp);
+					System.out.println("Nombre de point restant : "  + nbrPoints);
 					if(nbrPoints > 1){
-						distancePointsContournements(i+1, distanceMax, nbrPoints);
+						System.out.println("On entre dans les sous boucles");
+						distanceTemp = distancePointsContournements(i+1, distanceSegment, nbrPoints-1);
+						}
+					if(distanceTemp > distanceTotale){
+						distanceTotale = distanceTemp;
+						System.out.println("Distance totale définie à : " + distanceTotale);
 					}
 				}
 			}
-			distanceTotale+= distanceMax;
-			nbrPoints--;
 		return distanceTotale;
 	}
-
+	
+	public int nombreCroisement(){
+		int nombreCroisements = 0;	
+		for (int i = 0; i < tableCoordonnees.length-4; i++) {
+			for(int j = i+2; j<tableCoordonnees.length-1; j++){
+				if(Coordonnees.segmentsCroises(tableCoordonnees[i], tableCoordonnees[i+1], tableCoordonnees[j], tableCoordonnees[j+1])){
+					nombreCroisements++;
+				}
+			}
+		}
+		
+		return nombreCroisements;
+	}
 	
 } // fin classe

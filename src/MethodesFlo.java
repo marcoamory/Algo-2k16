@@ -11,7 +11,7 @@ public class MethodesFlo {
 	private String pilote; // nom et prenom du pilote
 	private Coordonnees[] tableCoordonnees;
 
-
+	/*
 	public Vol(Date date, String pilote, Coordonnees[] tableCoordonnees) {
 		this.date = date;
 		this.pilote = pilote;

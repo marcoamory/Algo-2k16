@@ -83,6 +83,9 @@ public class TraitementVol {
 	}
 	
 	public static void afficherParcours(Coordonnees[] parcours){
+		System.out.println("Date du vol : " + vol.getDate());
+		System.out.println("Pilote du vol : " + vol.getPilote());
+		System.out.println("Coordonnées enregistrées");
 		Utilitaires.afficherTableCoordonnees(vol.getTableCoordonnees());
 	}
 	
@@ -101,7 +104,10 @@ public class TraitementVol {
 	
 	public static void statistique3(){
 		System.out.println("\nLes coordonnées des 4 points extrème sont : ");
-		Utilitaires.afficherTableCoordonnees(vol.lieuxExtremes());
+		System.out.println("Extrême EST : [" + vol.lieuxExtremes()[0] + "]");
+		System.out.println("Extrême OUEST : [" + vol.lieuxExtremes()[1] + "]");
+		System.out.println("Extrême NORD : [" + vol.lieuxExtremes()[2] + "]");
+		System.out.println("Extrême SUD : [" + vol.lieuxExtremes()[3] + "]");
 	}
 	
 	public static void statistique4(){
@@ -115,11 +121,13 @@ public class TraitementVol {
 	}
 	
 	public static void statistique6(){
-		System.out.println("Distance max avec point de contournement: " + vol.distancePointsContournements(0, 0, 1));
+		System.out.print("Combien de point(s) de contournement(s)? (Max : " + (vol.getTableCoordonnees().length-2) + ")");
+		int nombrePointsContournements = Utilitaires.lireUnEntierPositifOuNul();
+		System.out.println("Distance max avec " + nombrePointsContournements + " point(s) de contournement(s): " + vol.distancePointsContournements(0,0,nombrePointsContournements));
 	}
 	
 	public static void statistique7(){
-		
+		System.out.println("Nombre de croisement(s) durant le vol : " + vol.nombreCroisement());
 	}
 	
 	public static void statistique8(){

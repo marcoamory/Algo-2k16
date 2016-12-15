@@ -61,7 +61,7 @@ public class Utilitaires {
 	
 	public static void afficherTableCoordonnees(Coordonnees[] coordonnees){
 		for (int i = 0; i < coordonnees.length; i++) {
-			System.out.println(coordonnees[i]);
+			System.out.println("[" + coordonnees[i] + "]");
 			System.out.println();
 			
 		}
