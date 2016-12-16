@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 /**
  * Projet algo 
@@ -46,8 +45,8 @@ public class Vol {
 	}
 	
 	/**
-	 * Cette methode renvoie la coordonnee la plus eloignee du point 0 0
-	 * @return la coordonnee la plus eloignee
+	 * Cette methode renvoie les coordonnées les plus eloignées du point [0 0]
+	 * @return les coordonnées les plus eloignées
 	 */
 	public Coordonnees lieuLePlusEloigne(){
 		
@@ -104,8 +103,8 @@ public class Vol {
 	}
 	
 	/**
-	 * Cette methode renvoie la coordonnee la plus proche d'une cible passee en parametre et entree par l'utilisateur
-	 * @param la coordonnee de la cible
+	 * Cette methode renvoie la coordonnee la plus proche d'une cible passee en paramètre et entrée par l'utilisateur
+	 * @param cible les coordonnées de la cible
 	 * @return la coordonnee la plus proche de la cible
 	 */
 	public Coordonnees lieuPlusProcheCible(Coordonnees cible) {
@@ -203,7 +202,8 @@ public class Vol {
 	/**
 	 * Cette methode renvoie la distance maximum parcourue avec k points de contournements, elle prend en parametre le nombre de point de contournement et
 	 * le nombre de coordonnees total
-	 * @param k nombre de point de contournement, n nombre de coordonnees au total
+	 * @param k nombre de point de contournement
+	 * @param n nombre de coordonnees au total
 	 * @return la distance max avec k point de contournement
 	 */
 	public double distanceKPointsContournements(int k, int n) {
@@ -233,9 +233,9 @@ public class Vol {
 		return distanceTotaleMax;
 	}
 	/**
-	 * Cette methode renvoie une methode en fonction du nombre de point de contournement demande, elle prend en parametre le nombre de point
+	 * Cette methode renvoie une methode en fonction du nombre de point de contournement demandé, elle prend en paramètre le nombre de points
 	 * @param nbrPoints le nombre de points de contournement
-	 * @return la methode adequate
+	 * @return la methode adéquate
 	 */
 	public double distancePointsContournements(int nbrPoints){
 		switch(nbrPoints){
@@ -270,12 +270,12 @@ public class Vol {
 	}
 	
 	/**
-	 * Cette methode renvoie si la cible passee en parametre est atteinte durant le vol ou non, elle prend en parametre les coordonnees de la cible entre par
+	 * Cette methode renvoie si la cible passée en paramètre est atteinte durant le vol ou non, elle prend en paramètre les coordonnées de la cible entrée par
 	 * l'utilisateur
-	 * @param coordonnees de la cible
+	 * @param cible coordonnees de la cible
 	 * @return true si la cible est atteinte, false si elle ne l'est pas
 	 */
-	public boolean cibleAtteintes(Coordonnees cible){
+	public boolean cibleAtteinte(Coordonnees cible){
 		if(tableCoordonnees[tableCoordonnees.length-1].equals(cible)){
 			return true;
 		}
@@ -289,15 +289,26 @@ public class Vol {
 		}
 		return false;
 	}
+	
+	public Coordonnees[] ciblesAtteintes(Coordonnees[] cibles){
+		Coordonnees[] ciblesAtteintes = new Coordonnees[nombreCibleAtteintes(cibles)];
+		for(int i = 0, j = 0; i<cibles.length; i++){
+			if(cibleAtteinte(cibles[i])){
+				ciblesAtteintes[j] = cibles[i];
+				j++;
+			}
+		}
+		return ciblesAtteintes;
+	}
 	/**
 	 * Cette methode renvoie le nombre de cible(s) atteinte(s) durant le vol, elle prend en parametre un tableau de cible entre par l'utilisateur
-	 * @param tableau de cible
+	 * @param cibles, un tableau de coordonnees de  cibles
 	 * @return nombre de cible atteinte
 	 */
 	public int nombreCibleAtteintes(Coordonnees[] cibles){
 		int nombreCibleAtteintes = 0;
 		for (int i = 0; i < cibles.length; i++) {
-			if(cibleAtteintes(cibles[i])){
+			if(cibleAtteinte(cibles[i])){
 				nombreCibleAtteintes++;
 			}
 		}
