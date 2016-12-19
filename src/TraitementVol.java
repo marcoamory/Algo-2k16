@@ -13,6 +13,7 @@ public class TraitementVol {
 	public static void main(String[] args) {
 		System.out.println("\nTraitement d'un vol\n*******************");
 		vol = chargerVol();
+		System.out.println("\n------------------------------------------\n");
 		afficherParcours(vol.getTableCoordonnees());
 		int choix;
 		do {
@@ -58,7 +59,7 @@ public class TraitementVol {
 		System.out.println("----");	
 		System.out.println("   1 --> Durée du vol");
 		System.out.println("   2 --> Lieu le plus éloigné du point de départ");
-		System.out.println("   3 --> Lieux les extrêmes aux quatre points cardinaux");
+		System.out.println("   3 --> Lieux les plus extrêmes aux quatre points cardinaux");
 		System.out.println("   4 --> Lieu le plus proche d'une cible");
 		System.out.println("   5 --> Distance parcourue");
 		System.out.println("   6 --> Distance maximale avec k point(s) de contournement(s)");
@@ -85,13 +86,20 @@ public class TraitementVol {
 	public static void afficherParcours(Coordonnees[] parcours){
 		System.out.println("Date du vol : " + vol.getDate());
 		System.out.println("Pilote du vol : " + vol.getPilote());
-		System.out.println("Coordonnées enregistrées");
+		System.out.println("Coordonnées enregistrées\n");
 		Utilitaires.afficherTableCoordonnees(vol.getTableCoordonnees());
 	}
 	
 	public static Coordonnees[] creerParcours(){
-		// A COMPLETER
-		return null;
+		System.out.println("Combien de coordonnées voulez-vous entrer?");
+		int nombreCible = Utilitaires.lireUnEntierStrictementPositif();
+		Coordonnees[] cibles = new Coordonnees[nombreCible];
+		for (int i = 0; i < cibles.length; i++) {
+			System.out.println("\nCoordonnées de la cible n°" + (i+1));
+			Coordonnees cible = lireCoordonnees();
+			cibles[i] = cible;
+		}
+		return cibles;
 	}
 	
 	public static void statistique1(){
@@ -121,14 +129,8 @@ public class TraitementVol {
 	}
 	
 	public static void statistique6(){
-		int nombrePointsContournements;
-		do{
-			System.out.print("Combien de point(s) de contournement(s)? (Max : " + (vol.getTableCoordonnees().length-2) + ")");
-			nombrePointsContournements = Utilitaires.lireUnEntierPositifOuNul();
-			if(nombrePointsContournements > vol.getTableCoordonnees().length-2){
-				System.out.println("Il ne peut pas y avoir autant de points de contournements pour ce vol.");
-			}
-		} while(nombrePointsContournements > vol.getTableCoordonnees().length-2);
+		System.out.print("Combien de point(s) de contournement(s)? (Max : " + (vol.getTableCoordonnees().length-2) + ")");
+		int nombrePointsContournements = Utilitaires.lireUnEntierComprisEntre(0, vol.getTableCoordonnees().length-2);
 		System.out.println("Distance max avec " + nombrePointsContournements + " point(s) de contournement(s): " + vol.distancePointsContournements(nombrePointsContournements) + " km");
 	}
 	
@@ -137,36 +139,24 @@ public class TraitementVol {
 	}
 	
 	public static void statistique8(){
-		System.out.println("Combien de cibles voulez-vous fixer comme objectif?");
-		int nombreCible = Utilitaires.lireUnEntierStrictementPositif();
-		Coordonnees[] cibles = new Coordonnees[nombreCible];
-		for (int i = 0; i < cibles.length; i++) {
-			System.out.println("\nCoordonnées de la cible n°" + (i+1));
-			Coordonnees cible = lireCoordonnees();
-			cibles[i] = cible;
+		Coordonnees[] cibles = creerParcours();
+		System.out.println("\nCibles atteintes :\n");
+		if(vol.ciblesAtteintes(cibles).length == 0){
+			System.out.println("Aucune cible n'a été atteinte.");
 		}
-		System.out.println("\nCibles atteintes\n");
-		Utilitaires.afficherTableCoordonnees(vol.ciblesAtteintes(cibles));
+		else{
+			Utilitaires.afficherTableCoordonnees(vol.ciblesAtteintes(cibles));
+		}
 	}
 	
 	public static void statistique9(){
-		System.out.println("Combien de cibles voulez-vous fixer comme objectif?");
-		int nombreCible = Utilitaires.lireUnEntierStrictementPositif();
-		Coordonnees[] cibles = new Coordonnees[nombreCible];
-		for (int i = 0; i < cibles.length; i++) {
-			System.out.println("\nCoordonnées de la cible n°" + (i+1));
-			Coordonnees cible = lireCoordonnees();
-			cibles[i] = cible;
-		}
-		
+		Coordonnees[] cibles = creerParcours();
 		System.out.println("Nombre de cibles atteintes : " + vol.nombreCibleAtteintes(cibles));
 	}
 	
 	public static void statistique10(){
-		
+		System.out.println("Vitesse moyenne du pilote : " + vol.vitesseMoyenne() + " km/unité de temps");
 	}
-
-	// A COMPLETER
 
 
 	/**

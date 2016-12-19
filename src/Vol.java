@@ -289,9 +289,22 @@ public class Vol {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * Cette méthode prend un tableau de cibles à atteindre en paramètre et renvoie un tableau avec les cibles atteintes durant le vol
+	 * L'ordre des cibles entrées n'a pas d'importance!
+	 * @param cibles à atteindre
+	 * @return tableau de coordonnees avec les cibles atteintes
+	 */
 	public Coordonnees[] ciblesAtteintes(Coordonnees[] cibles){
-		Coordonnees[] ciblesAtteintes = new Coordonnees[nombreCibleAtteintes(cibles)];
+		int nombreCibleAtteintes = 0;
+		for(int i = 0; i<cibles.length; i++){
+			if(cibleAtteinte(cibles[i])){
+				nombreCibleAtteintes++;
+			}
+		}
+		
+		Coordonnees[] ciblesAtteintes = new Coordonnees[nombreCibleAtteintes];
 		for(int i = 0, j = 0; i<cibles.length; i++){
 			if(cibleAtteinte(cibles[i])){
 				ciblesAtteintes[j] = cibles[i];
@@ -301,18 +314,39 @@ public class Vol {
 		return ciblesAtteintes;
 	}
 	/**
-	 * Cette methode renvoie le nombre de cible(s) atteinte(s) durant le vol, elle prend en parametre un tableau de cible entre par l'utilisateur
-	 * @param cibles, un tableau de coordonnees de  cibles
+	 * Cette methode renvoie le nombre de cible(s) atteinte(s) durant le vol, elle prend en paramètre un tableau de cible entré par l'utilisateur
+	 * L'ordre des cibles entrées a de l'importance!
+	 * @param cibles un tableau de coordonnees de  cibles
 	 * @return nombre de cible atteinte
 	 */
 	public int nombreCibleAtteintes(Coordonnees[] cibles){
+		int index = 0;
 		int nombreCibleAtteintes = 0;
-		for (int i = 0; i < cibles.length; i++) {
-			if(cibleAtteinte(cibles[i])){
-				nombreCibleAtteintes++;
+		for(int i = 0; i<cibles.length; i++ ){
+			for (int j = index; j < tableCoordonnees.length; j++) {
+				if(tableCoordonnees[j].equals(cibles[i])){
+					index = j;
+					nombreCibleAtteintes++;
+				}
 			}
 		}
 		return nombreCibleAtteintes;
+	}
+	
+	/**
+	 * 
+	 * Cette méthode renvoie le vitesse moyenne du pilote durant le vol.
+	 * 
+	 * @return vitesse moyenne
+	 */
+	
+	public float vitesseMoyenne(){
+		float distance = (float) distanceTotale();
+		float temps = duree();
+		
+		float vitesseMoyenne = distance/temps;
+		
+		return vitesseMoyenne;
 	}
 	
 } // fin classe
