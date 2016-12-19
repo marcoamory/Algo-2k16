@@ -108,7 +108,9 @@ public class Vol {
 	 * @return la coordonnee la plus proche de la cible
 	 */
 	public Coordonnees lieuPlusProcheCible(Coordonnees cible) {
-		
+		if(cible == null){
+			throw new IllegalArgumentException("Cible invalide");
+		}
 		double distanceMin = Integer.MAX_VALUE;
 		Coordonnees lieuPlusProcheCible = tableCoordonnees[0];
 		
@@ -207,6 +209,8 @@ public class Vol {
 	 * @return la distance max avec k point de contournement
 	 */
 	public double distanceKPointsContournements(int k, int n) {
+		if(k < 0) throw new IllegalArgumentException("Nombre de point de contournement");
+		if(n <= 0) throw new IllegalArgumentException("Nombre de coordonnées invalide");
 		return distanceKPointsContournements(k, 0, n, new Coordonnees[k], 0);
 	}
 	
@@ -238,6 +242,7 @@ public class Vol {
 	 * @return la methode adéquate
 	 */
 	public double distancePointsContournements(int nbrPoints){
+		if(nbrPoints < 0) throw new IllegalArgumentException("Nombre de points de contournement invalide");
 		switch(nbrPoints){
 		case 1 : 
 			return distanceUnPointsContournements();
@@ -254,7 +259,7 @@ public class Vol {
 	 * Cette methode renvoie le nombre de croisement dans le parcours du vol
 	 * @return le nombre de croisement
 	 */
-	public int nombreCroisement(){
+	public int nombreCroisements(){
 		int nombreCroisements = 0;	
 		for (int i = 0; i < tableCoordonnees.length-3; i++) {
 			for(int j = i+1; j<tableCoordonnees.length-1; j++){
@@ -276,6 +281,9 @@ public class Vol {
 	 * @return true si la cible est atteinte, false si elle ne l'est pas
 	 */
 	public boolean cibleAtteinte(Coordonnees cible){
+		if(cible == null){
+			throw new IllegalArgumentException("Cible invalide");
+		}
 		if(tableCoordonnees[tableCoordonnees.length-1].equals(cible)){
 			return true;
 		}
@@ -297,6 +305,9 @@ public class Vol {
 	 * @return tableau de coordonnees avec les cibles atteintes
 	 */
 	public Coordonnees[] ciblesAtteintes(Coordonnees[] cibles){
+		if(cibles.length <= 0){
+			throw new IllegalArgumentException("Cibles invalides");
+		}
 		int nombreCibleAtteintes = 0;
 		for(int i = 0; i<cibles.length; i++){
 			if(cibleAtteinte(cibles[i])){
@@ -319,7 +330,10 @@ public class Vol {
 	 * @param cibles un tableau de coordonnees de  cibles
 	 * @return nombre de cible atteinte
 	 */
-	public int nombreCibleAtteintes(Coordonnees[] cibles){
+	public int nombreCiblesAtteintes(Coordonnees[] cibles){
+		if(cibles.length <= 0){
+			throw new IllegalArgumentException("Cibles invalide");
+		}
 		int index = 0;
 		int nombreCibleAtteintes = 0;
 		for(int i = 0; i<cibles.length; i++ ){

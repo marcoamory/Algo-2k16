@@ -79,7 +79,13 @@ public class TraitementVol {
 		System.out.print("\nLongitude: ");
 		long longitude = Utilitaires.lireUnEntier();
 		
-		Coordonnees coordonees = new Coordonnees(latitude, longitude);
+		Coordonnees coordonees = null;
+		try {
+			coordonees = new Coordonnees(latitude, longitude);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return coordonees;
 	}
 	
@@ -121,7 +127,12 @@ public class TraitementVol {
 	public static void statistique4(){
 		System.out.println("Coordonnées de la cible");
 		Coordonnees cible = lireCoordonnees();
-		System.out.println("Le lieu le plus proche de la cible est : [" + vol.lieuPlusProcheCible(cible) + "]");
+		try {
+			System.out.println("Le lieu le plus proche de la cible est : [" + vol.lieuPlusProcheCible(cible) + "]");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void statistique5(){
@@ -131,27 +142,42 @@ public class TraitementVol {
 	public static void statistique6(){
 		System.out.print("Combien de point(s) de contournement(s)? (Max : " + (vol.getTableCoordonnees().length-2) + ")");
 		int nombrePointsContournements = Utilitaires.lireUnEntierComprisEntre(0, vol.getTableCoordonnees().length-2);
-		System.out.println("Distance max avec " + nombrePointsContournements + " point(s) de contournement(s): " + vol.distancePointsContournements(nombrePointsContournements) + " km");
+		try {
+			System.out.println("Distance max avec " + nombrePointsContournements + " point(s) de contournement(s): " + vol.distancePointsContournements(nombrePointsContournements) + " km");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void statistique7(){
-		System.out.println("Nombre de croisement(s) durant le vol : " + vol.nombreCroisement());
+		System.out.println("Nombre de croisement(s) durant le vol : " + vol.nombreCroisements());
 	}
 	
 	public static void statistique8(){
 		Coordonnees[] cibles = creerParcours();
 		System.out.println("\nCibles atteintes :\n");
-		if(vol.ciblesAtteintes(cibles).length == 0){
-			System.out.println("Aucune cible n'a été atteinte.");
-		}
-		else{
-			Utilitaires.afficherTableCoordonnees(vol.ciblesAtteintes(cibles));
+		try {
+			if(vol.ciblesAtteintes(cibles).length == 0){
+				System.out.println("Aucune cible n'a été atteinte.");
+			}
+			else{
+				Utilitaires.afficherTableCoordonnees(vol.ciblesAtteintes(cibles));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
 	public static void statistique9(){
 		Coordonnees[] cibles = creerParcours();
-		System.out.println("Nombre de cibles atteintes : " + vol.nombreCibleAtteintes(cibles));
+		try {
+			System.out.println("Nombre de cibles atteintes : " + vol.nombreCiblesAtteintes(cibles));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void statistique10(){
