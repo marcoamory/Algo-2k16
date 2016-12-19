@@ -82,19 +82,19 @@ public class Vol {
 		for (int i = 0; i < tableCoordonnees.length; i++) {
 			if(tableCoordonnees[i].getLatitude() > latitudeMax){
 				latitudeMax = tableCoordonnees[i].getLatitude();
-				est = tableCoordonnees[i];
+				nord = tableCoordonnees[i];
 			}
 			if(tableCoordonnees[i].getLatitude() < latitudeMin){
 				latitudeMin = tableCoordonnees[i].getLatitude();
-				ouest = tableCoordonnees[i];
+				sud = tableCoordonnees[i];
 			}
 			if(tableCoordonnees[i].getLongitude() > longitudeMax){
 				longitudeMax = tableCoordonnees[i].getLongitude();
-				nord = tableCoordonnees[i];
+				est = tableCoordonnees[i];
 			}
 			if(tableCoordonnees[i].getLongitude() < longitudeMin){
 				longitudeMin = tableCoordonnees[i].getLongitude();
-				sud = tableCoordonnees[i];
+				ouest = tableCoordonnees[i];
 			}
 		}
 		Coordonnees[] lieuxExtremes = new Coordonnees[] {est, ouest, nord, sud}; 
@@ -202,7 +202,7 @@ public class Vol {
 	}
 	
 	/**
-	 * Cette methode renvoie la distance maximum parcourue avec k points de contournements, elle prend en parametre le nombre de point de contournement et
+	 * Cette methode renvoie la distance maximum parcourue avec k points de contournements calculée grace à la méthode homonyme, elle prend en parametre le nombre de point de contournement et
 	 * le nombre de coordonnees total
 	 * @param k nombre de point de contournement
 	 * @param n nombre de coordonnees au total
@@ -213,6 +213,20 @@ public class Vol {
 		if(n <= 0) throw new IllegalArgumentException("Nombre de coordonnées invalide");
 		return distanceKPointsContournements(k, 0, n, new Coordonnees[k], 0);
 	}
+	
+	/**
+	 * Cette methode renvoie la distance maximum parcourue avec k points de contournements, elle prend en parametre le nombre de point de contournement,
+	 * le nombre de coordonnees total, un nouveau tableau de coordonnées contenant les coordonnées à tester comme point de contournement
+	 *
+	 * @param k nombre de coordonnées total
+	 * @param idx l'index de début de boucle dans la table de coordonnées
+	 * @param n nombre de point de contournement
+	 * @param cmb le tableau de coordonnées contenant les les points de contournement à tester
+	 * @param jdx l'index dans le tableau de coordonnée cmb
+	 * @return
+	 */
+	
+	
 	
 	public double distanceKPointsContournements(int k, int idx, int n, Coordonnees[] cmb, int jdx) {
 		if (k == 0) {
